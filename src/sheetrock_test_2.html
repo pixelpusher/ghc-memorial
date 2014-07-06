@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Spreadsheets via sheetrock test 2</title>
+
+    <link rel="stylesheet" type="text/css" href="http://chriszarate.github.io/sheetrock/src/sheetrock.min.css">
+
+    <style type="text/css">
+    	#loading {
+    		font-size: 36px;
+    		font-weight: bold;
+    	}
+    </style>
+
+    <script type="text/javascript">
+    	window.addEventListener('load', function ()
+    	{
+    		// Define spreadsheet URL.
+			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs#gid=0';
+			console.log('loading');
+			// Load an entire sheet.
+			$('#stats').sheetrock({
+				url: mySpreadsheet,
+				sql: "select A,B,C,D where C = 'Charleton' order by B asc",
+  				chunkSize: 0, // all rows
+  				loading: $('#loading')
+			});
+    	});
+    </script>
+  
+ 	</head>
+	
+	<body>
+
+		<p>This example only shows the results from Charleton in the spreadsheet.  That's what the "C=Charleton" means in the Javascript above.  Also, it sorts the rows by last name (B) in ascending order.</p>
+
+		<div id="loading">Loading...</div>
+		<table id="stats" class="table table-condensed table-striped"></table>
+
+	<!-- https://docs.google.com/spreadsheets/d/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/pubhtml -->
+
+    <!-- Load jQuery from CloudFlare’s CDN. -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- sheetrock for google spreadsheets API -->
+    <script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>
+
+
+  </body>
+</html>

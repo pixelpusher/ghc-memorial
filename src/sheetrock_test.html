@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Spreadsheets via sheetrock test</title>
+    <link rel="stylesheet" type="text/css" href="http://chriszarate.github.io/sheetrock/src/sheetrock.min.css">
+    <script type="text/javascript">
+    	window.addEventListener('load', function ()
+    	{
+    		// Define spreadsheet URL.
+			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs#gid=0';
+			console.log('loading');
+			// Load an entire sheet.
+			$('#stats').sheetrock({
+			  url: mySpreadsheet
+			});
+    	});
+    </script>
+  
+ 	</head>
+	
+	<body>
+
+		<table id="stats" class="table table-condensed table-striped"></table>
+
+	<!-- https://docs.google.com/spreadsheets/d/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/pubhtml -->
+
+    <!-- Load jQuery from CloudFlare’s CDN. -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- sheetrock for google spreadsheets API -->
+    <script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Google Spreadsheet API Test</title>
+
+    <script type="text/javascript">
+    
+    	function myFunc( data )
+    	{
+    		console.log(data);
+    		
+    		var title = data.feed.title.$t;
+
+    		console.log("Got sheet: " + title);
+
+            $('#data').append("<p>Got sheet: " + title + "</p>");
+
+    		var rows = data.feed.entry;
+    		console.log ("got " + rows.length + " rows from the spreadsheet");
+
+            $('#data').append("<p>got " + rows.length + " rows from the spreadsheet"+ "</p>");
+
+    		var i=0;
+
+    		while (i < rows.length)
+    		{
+    			console.log(i + ": " + rows[i].content.$t);
+                $('#data').append("<p>" + i + ": " + rows[i].content.$t + "</p>");
+    			++i;
+    		}
+
+    	}
+    </script>
+  
+ 	</head>
+	
+	<body>
+
+		<div id="data"><b>Data goes here</b></div>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+		<!-- Get the spreadsheet from google via Javascript -->
+		<script src='https://spreadsheets.google.com/feeds/list/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/od6/public/basic?alt=json-in-script&callback=myFunc'> </script>
+
+  </body>
+</html>
