@@ -16,13 +16,13 @@
     	window.addEventListener('load', function ()
     	{
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs#gid=0';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1qM3kEVwzSg9sgYVfhibaF5jQdiw3E40ZVtaukCZugX4#gid=0';
 			console.log('loading');
 			// Load an entire sheet.
 			$('#stats').sheetrock({
 				url: mySpreadsheet,
-				sql: "select A,B,C,D where C = 'Charleton' order by B asc",
-  				chunkSize: 0, // all rows
+				sql: "select A,B,C,D where A = 'Smith/CWGC/Anc' order by B asc",
+  				chunkSize: 25, // all rows
   				loading: $('#loading')
 			});
     	});
@@ -32,13 +32,15 @@
 	
 	<body>
 
-		<p>This example only shows the results from Charleton in the spreadsheet.  That's what the "C=Charleton" means in the Javascript above.  Also, it sorts the rows by last name (B) in ascending order.</p>
+		<p>This example only shows the results from Charleton in the spreadsheet.  That's what the "C=Smith/CWGC/Anc" means in the Javascript above.  Also, it sorts the rows by last name (B) in ascending order.</p>
 
 		<div id="loading">Loading...</div>
 		<table id="stats" class="table table-condensed table-striped"></table>
 
 	<!-- https://docs.google.com/spreadsheets/d/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/pubhtml -->
 
+    <!-- https://docs.google.com/spreadsheets/d/1qM3kEVwzSg9sgYVfhibaF5jQdiw3E40ZVtaukCZugX4/edit?usp=sharing -->
+        
     <!-- Load jQuery from CloudFlare’s CDN. -->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
