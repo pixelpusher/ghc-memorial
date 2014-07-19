@@ -21,8 +21,9 @@
 			// Load an entire sheet.
 			$('#stats').sheetrock({
 				url: mySpreadsheet,
-				sql: "select A,B,C,D where A = 'Smith/CWGC/Anc' order by B asc",
-  				chunkSize: 25, // all rows
+				//sql: "select A,B,D,E where A = 'Smith/CWGC/Anc' order by B asc",
+                sql: "select A,B,D,E where B contains 'Al' order by B asc",
+  				chunkSize: 300, // 300 rows
   				loading: $('#loading')
 			});
     	});
