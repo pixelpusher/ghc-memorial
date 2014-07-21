@@ -10,8 +10,12 @@
     		font-size: 36px;
     		font-weight: bold;
     	}
-        #people, #person {
+        #people, #person, #next25 {
             display:none;
+        }
+        #next25 {
+            margin: 2em 1em;
+            font-weight: bold;
         }
     </style>
 
@@ -46,7 +50,8 @@
         //
         var $_GET = getQueryParams(document.location.search);
             
-    	window.addEventListener('load', function ()
+        // this function loads (or re-loads) everything from the database.
+        var loadDatabase = function()
     	{
             var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
             
@@ -73,7 +78,9 @@
                 // if no id was given, or it was not a number, return all rows
                 query = "select %id%, %surname%, %forenames%, %cemeterymemorial% order by %surname% asc";
                 targetElem = $('#people');
-                HTemplate = Handlebars.compile($('#people-template').html());          
+                HTemplate = Handlebars.compile($('#people-template').html());  
+                
+                $('#next25').css('display', 'block');
             }
             else
             {
@@ -98,8 +105,10 @@
                 rowHandler: HTemplate,
   				loading: $('#loading'),
                 userCallback : finishedLoading
-			});
-    	});
+			});  
+    	};
+            
+        window.addEventListener('load', loadDatabase);
     </script>
   
  	</head>
@@ -176,6 +185,9 @@
         </tbody>
         </table>
         </div>
+        
+        <div id="next25"><a href="javascript:loadDatabase();">next 25</a></div>
+        
         
         
 	<!-- https://docs.google.com/spreadsheets/d/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/pubhtml -->
