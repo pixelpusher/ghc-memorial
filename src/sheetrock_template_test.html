@@ -24,8 +24,18 @@
 			// Load an entire sheet.
 			$('#people').sheetrock({
 				url: mySpreadsheet,
-				//sql: "select A,B,D,E where A = 'Smith/CWGC/Anc' order by B asc",
-                sql: "select A,C,F,P where C contains 'Al' order by C asc",
+                // you can select for a single ID:
+				//sql: "select A,B,D,E where A = '0' order by B asc",
+                
+                // or, search by name that starts with a string:
+                sql: "select %id%, %surname%, %forenames%, %cemeterymemorial% where %surname% starts with 'Al' order by %surname% asc",
+                
+               //sql: "select %id%, %surname%, %forenames% order by %id% asc",
+                
+                
+                // here's another that searches if a name contains a string of characters 'bob':
+                //sql: "select %id%,%surname%,%forenames%,%cemetarymemorial% where %surname% contains 'bob' order by %surname% asc",
+                
   				chunkSize: 25, // 300 rows
                 headersOff: true,
                 rowHandler: PeopleTemplate,
@@ -38,21 +48,28 @@
 	
 	<body>
 
-		<p>This example only shows the results from Charleton in the spreadsheet.  That's what the "C=Smith/CWGC/Anc" means in the Javascript above.  Also, it sorts the rows by last name (B) in ascending order.</p>
+		<p>This example shows how to format results using a 'handlebars' template for each row of data (e.g. an entry for a person).  Also, it sorts the rows by last name (B) in ascending order.</p>
 
 		<div id="loading">Loading...</div>
 		
-        <table id="stats" class="table table-condensed table-striped"></table>
-
-        <h4>People</h4>
-        <ol id="people">
+        <h2>People</h2>
+        <table id="people" class="table table-condensed table-striped">
+        <thead>
+        <tr>
+            <th>Surname, Forename</th>
+            <th>Cemetery</th>
+        </tr>
+        </thead>
+        <tbody>
           <script id="people-template" type="text/x-handlebars-template">
-            <li>
-              <strong>{{cells.surname}}, {{cells.forenames}}</strong>,
-              {{cells.cemeterymemorial}}
-            </li>
+            <tr>
+                <td>
+              <a href="?id={{cells.id}}"><strong>{{cells.surname}}, {{cells.forenames}}</strong></a></td>
+                <td>{{cells.cemeterymemorial}}</td>
+            </tr>
           </script>
-        </ol>
+        </tbody>
+        </table>
         
 	<!-- https://docs.google.com/spreadsheets/d/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/pubhtml -->
 
