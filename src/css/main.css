@@ -33,13 +33,10 @@ body {
   font-size: 36px;
   font-weight: bold;
 }
-  #people, #person, #next25, #loading {
+#people, #person, #next25, #loading 
+{
       display:none;
-  }
-  #people, #person,#next25 {
-      margin: 1em 1em;
-      font-weight: bold;
-  }
+}
 
 
 /* Customize container */
