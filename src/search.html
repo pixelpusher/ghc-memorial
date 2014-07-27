@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- TODO: put icon here -->
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+    <title>Greenwich Memorial Project</title>
+
+    <!-- Bootstrap core CSS -->
+
+  	<!-- Latest compiled and minified CSS -->
+  	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  	<!-- Optional theme -->
+  	<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div id="header-image"><img src="http://placekitten.com/g/800/200"></div>
+
+    <div class="container">  
+      <div class="row title">
+        <div class="col-md-12">SEARCH</div>
+      </div>
+      <div class="row search-row">
+        <div class="col-md-12">
+          <form action="" id="search-form">
+            <fieldset>
+                <input type="text" id="search" name="search" />
+                <input type="submit" id="search-submit" value="" />
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="person" class="container">
+      <div class="row">
+        <div class="col-md-12"><h2>Person:</h2></div>
+      </div>
+        <script id="person-template" type="text/x-handlebars-template">    
+        <div class="row result">
+            <div class="col-md-6 name"><strong>
+              {{#if cells.surname}}
+                {{cells.surname}}
+              {{else}}
+                ?
+              {{/if}},
+              
+              {{#if cells.forenames}}
+                {{cells.forenames}}
+              {{else}}
+                ?
+              {{/if}}
+                </strong>
+            </div>
+            <div class="col-md-6 info">
+                <ol>
+                    <li>{{cells.age}}</li>
+                    <li>{{cells.date_of_death}}</li>
+                    <li>{{cells.cemeterymemorial}}</li>
+                    <li>{{cells.regiment}}</li>
+                </ol>
+            </div>
+          </div>
+        </script>
+        </div>
+      </div>
+    </div>
+
+    <div id="people" class="container">
+      <div class="row">
+        <div class="col-md-12"><h2>People</h2></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+              Surname, Forename
+        </div>
+        <div class="col-md-6">
+              Cemetery
+        </div>
+      </div>
+
+        <script id="people-template" type="text/x-handlebars-template">
+          <div class="row result">
+            <div class="col-md-6">
+              <a href="?id={{cells.id}}">
+                  <strong>
+                  {{#if cells.surname}}
+                    {{cells.surname}}
+                  {{else}}
+                    ?
+                  {{/if}},
+                  
+                  {{#if cells.forenames}}
+                    {{cells.forenames}}
+                  {{else}}
+                    ?
+                  {{/if}}
+                  </strong>
+              </a>
+            </div>
+
+            <div class="col-md-6">
+              {{#if cells.cemeterymemorial}}
+                {{cells.cemeterymemorial}}
+              {{else}}
+                    unknown
+              {{/if}}
+            </div>
+          </div>
+        </script>
+    </div>
+      
+    <div class="container">
+      <div id="next25" class="col-md-12">
+        <a href="javascript:loadDatabase();">next 25</a>
+      </div>   
+
+      <div id="loading" class="row">
+        <div class="col-md-12"><h2>loading...</h2></div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="col-md-6">
+          <h4>Subheading</h4>
+          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+          <h4>Subheading</h4>
+          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+          <h4>Subheading</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Company 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+  	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  	
+      
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    
+    <!-- Load jQuery from CloudFlare’s CDN. -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+
+    <!-- sheetrock for google spreadsheets API -->
+    <script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>
+
+    <!-- our custom javascript -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
