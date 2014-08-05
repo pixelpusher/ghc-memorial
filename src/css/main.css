@@ -24,14 +24,13 @@ body {
   margin: 0;
   width:100%; /*full page*/
   height: auto;
-  background-color: #8A0616; 
+  background-color: #8A0616;
 
 }
 
 #project-title {
     text-align: center;
     width: 100%; /*full page*/
-    background-image: url(../images/Header.png);
 }
 
 #project-title h2 {
