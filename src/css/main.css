@@ -77,6 +77,17 @@ body {
 
 
 
+  #rghtLogo {
+        position: absolute;
+        width:113px;
+        height:auto;
+        top:0%;
+        left:14px;
+		z-index:6;
+    }
+
+
+
 
 #loading {
   font-size: 36px;
@@ -344,19 +355,38 @@ table th[class*="col-"] {
    .homeImgOverlay {
     position: absolute;
     width: 100%;
-    height: 85px;
-    top: 315px;
+    height: 75px;
+    top: 325px;
     background-color: rgba(0,0,0,0.7);
 }
     
     
+  #rghtLogo {
+        position: absolute;
+        width:83.5px;
+        height:auto;
+        top:0%;
+        left:14px;
+		z-index:6;
+    }
     
-    
-    
-    
-    
+
+
+  #project-title h2 {
+      padding: :10px;
+      margin-left:100px;
+      font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+      font-weight: bold;
+      color: #EDE9D4;
+    }
+
     
 }
+    
+    
+    
+    
+    
 .alert {
   padding: 15px;
   margin-bottom: 20px;
