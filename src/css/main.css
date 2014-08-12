@@ -120,6 +120,153 @@ body {
 }
 
 
+.col-md-12 {
+    width: 100%;
+    background-color: #000000;
+    height: 10px;
+}
+
+
+#memorialBar {
+    height: 50px;
+    background-color: #EDE9D4;
+}
+
+
+#viewMemorial h2 {
+    font-family: 'ArialMT', 'Arial';
+    color: #262626;
+    font-weight: bold;
+    padding: 8px;
+    padding-left: 20px;
+}
+
+
+/* Code for the memorials */
+
+.charlton {
+  position: relative;
+  width:100%;
+  height: 200px;
+  background-image: url(../images/Memorial-3.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:top;
+}
+
+
+
+.charltonOverlay {
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    top: 125px;
+    background-color: rgba(0,0,0,0.6);
+}
+
+
+
+.charltonOverlay h2 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+}
+
+
+
+
+.eltham {
+  position: relative;
+  width:100%;
+  height: 200px;
+  margin-top: 30px;
+  background-image: url(../images/Memorial-2.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:top;
+}
+
+
+
+.elthamOverlay {
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    top: 125px;
+    background-color: rgba(0,0,0,0.6);
+}
+
+
+
+.elthamOverlay h2 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+}
+
+
+
+.woolwich {
+  position: relative;
+  width:100%;
+  height: 200px;
+  margin-top: 30px;
+  background-image: url(../images/Memorial-1.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:top;
+}
+
+
+
+.woolwichOverlay {
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    top: 125px;
+    background-color: rgba(0,0,0,0.6);
+}
+
+
+
+.woolwichOverlay h2 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+}
+
+
+
+
+
+
+
+
+#searchHeadBar {
+    height: 50px;
+    background-color: #EDE9D4;
+}
+
+
+#searchHeader h2 {
+    font-family: 'ArialMT', 'Arial';
+    color: #262626;
+    font-weight: bold;
+    padding: 8px;
+    padding-left: 20px;
+}
+
+
+
+
+
+.footer {
+    background-color: #8A0616;
+    height: 55px;
+}
 
 
 
