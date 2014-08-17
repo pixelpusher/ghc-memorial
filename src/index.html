@@ -129,6 +129,13 @@
                <div id="searchHeadBar">
                     <h2>Search</h2>
                </div>
+               
+            <form action="" id="search-form">
+                <fieldset>
+                    <input type="text" id="search" name="search" placeholder=""/>
+                    <!-- <input type="submit" id="search-submit" value="Search" /> -->
+                </fieldset>
+            </form>
            </div> <!--searchHeader!-->
                      
         </div> <!--col-md-6!-->
@@ -141,7 +148,19 @@
       </div> <!--row search!-->
 
       <div class="footer">
-        <p>&copy; Company 2014</p>
+          
+         <div id="footerContent"> 
+         <!-- <div id="royalGreenwich"> -->
+            <img id="royalGreenwich" src="images/royalGreenwich.png" alt="Royal Borough of Greenwich">  
+         <!-- </div> -->
+          
+      <!--  <div id="lotteryFund"> -->
+            <img id="lotteryFund" src="images/lotteryFund.png" alt="Supported by National Lottery Fund">
+        <!--  </div>  -->
+          
+        <p> All content &copy; 2014 Royal Greenwich Heritage Trust </p>
+          </div>
+          
       </div>
 
     </div> <!-- /container -->
@@ -166,5 +185,31 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+      
+      <script type="text/javascript">
+      
+    var defaultText = "Search by Name, Memorial, Personal info";
+	var searchBox = document.getElementById("search");
+ 
+	//default text after load
+	searchBox.value = defaultText;
+ 
+	//on focus behaviour
+	searchBox.onfocus = function() {
+		if (this.value == defaultText) {//clear text field
+			this.value = '';
+		}
+	}
+ 
+	//on blur behaviour
+	searchBox.onblur = function() {
+		if (this.value == "") {//restore default text
+			this.value = defaultText;
+		}
+	}
+          
+      </script>
+      
+      
   </body>
 </html>
