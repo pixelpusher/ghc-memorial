@@ -12,38 +12,7 @@ body {
   margin: 0;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 7px;
-  padding-left: 20px;
-  color: #777;
-  border-top: 1px solid #000000;
-  background-color: #430108;
-  height: auto;
-  margin-top: 50px;
-}
 
-
-
-#royalGreenwich {
-    width: 120px;
-    padding-top: 3px;
-    display: inline-block;
-}
-
-#lotteryFund {
-    width: 320px;
-    padding-top: 3px;
-    padding-left: 13px;
-    display: inline-block;
-}
-
-.footer p {
-    font-size: 12px;
-    color: #EDE9D4; 
-    text-align: center;
-    padding-bottom: 10px;
-}
 
 
 #headerBar {
@@ -104,6 +73,198 @@ body {
 
 
 
+/* Charlton Memorial Page Image Overlays */
+
+.charltonImg {
+  position: relative;
+  width:100%;
+  height: 550px;
+  margin-top: 20px;
+  background-image: url(../images/Charlton%203.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:left -81px;
+}
+
+/*#homeImg img {
+  margin-top: 25px;
+  width:100%;
+}*/
+
+
+.charltonImgOverlay {
+    position: absolute;
+    width: 100%;
+    height: 85px;
+    top: 465px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+.charltonImgOverlay h1 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+}
+
+
+
+
+
+/* Eltham Memorial Page Image Overlays */
+
+
+
+.elthamImg {
+  position: relative;
+  width:100%;
+  height: 550px;
+  margin-top: 20px;
+  background-image: url(../images/Eltham-3a.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: right -6px;
+}
+
+
+.elthamImgOverlay {
+    position: absolute;
+    width: 100%;
+    height: 85px;
+    top: 465px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+.elthamImgOverlay h1 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+}
+
+
+
+
+/* Woolwich Arsenal Memorial Page Image Overlays */
+
+
+.woolwichImg {
+  position: relative;
+  width:100%;
+  height: 550px;
+  margin-top: 20px;
+  background-image: url(../images/woolwich.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.woolwichImgOverlay {
+    position: absolute;
+    width: 100%;
+    height: 85px;
+    top: 465px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+.woolwichImgOverlay h1 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+}
+
+
+
+
+
+
+
+/* Profile Page Image Overlay */
+
+.profileImg {
+  position: relative;
+  width:100%;
+  height: 550px;
+  margin-top: 20px;
+  background-image: url(../images/Profile-picture2.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+}
+
+
+.profileImgOverlay {
+    position: absolute;
+    width: 100%;
+    height: 85px;
+    top: 465px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+
+.profileImgOverlay h1 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+    display: inline-block;
+}
+
+
+.profileImgOverlay h3 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #C1C1C1;
+    display: inline-block;
+}
+
+
+
+
+
+/* Search Page Image Overlay */
+
+.searchImg {
+  position: relative;
+  width:100%;
+  height: 550px;
+  margin-top: 20px;
+  background-image: url(../images/Search-page.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:left -51px;
+}
+
+
+.searchImgOverlay {
+    position: absolute;
+    width: 100%;
+    height: 85px;
+    top: 465px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+
+.searchImgOverlay h1 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+    display: inline-block;
+}
+
+
+
+
+
   #rghtLogo {
         position: absolute;
         width:113px;
@@ -147,11 +308,31 @@ body {
 }
 
 
-.col-md-12 {
+
+#memorialDes {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    padding-top: 3px;
+    color: #EDE9D4;
+    font-family: 'ArialMT', 'Arial';
+    font-size: 18px;
+}
+
+
+#memorialDes h5 {
+    margin-top: -7px;
+}
+
+
+
+.col-md-12 div{
     width: 100%;
     background-color: #000000;
     height: 10px;
+    padding-top: 30px;
 }
+
 
 
 #memorialBar {
@@ -169,16 +350,35 @@ body {
 }
 
 
-/* Code for the memorials */
+/* On each memorial page */
+
+
+#namesBar {
+    height: 50px;
+    background-color: #EDE9D4;
+}
+
+
+
+#namesBar h2 {
+    font-family: 'ArialMT', 'Arial';
+    color: #262626;
+    font-weight: bold;
+    padding: 8px;
+    padding-left: 20px;
+}
+
+
+/* Code for the memorials links on each page */
 
 .charlton {
   position: relative;
   width:100%;
   height: 200px;
-  background-image: url(../images/Memorial-3.png);
+  background-image: url(../images/CharltonOld.png);
   background-repeat:no-repeat;
   background-size: cover;
-  background-position:top;
+  background-position:center;
 }
 
 
@@ -208,7 +408,7 @@ body {
   width:100%;
   height: 200px;
   margin-top: 30px;
-  background-image: url(../images/Memorial-2.png);
+  background-image: url(../images/ElthamUnveil1924.png);
   background-repeat:no-repeat;
   background-size: cover;
   background-position:top;
@@ -240,10 +440,10 @@ body {
   width:100%;
   height: 200px;
   margin-top: 30px;
-  background-image: url(../images/Memorial-1.png);
+  background-image: url(../images/woolwich.png);
   background-repeat:no-repeat;
   background-size: cover;
-  background-position:top;
+  background-position:center;
 }
 
 
@@ -264,6 +464,7 @@ body {
     font-weight: bold;
     color: #EDE9D4;
 }
+
 
 
 
@@ -291,6 +492,93 @@ body {
     margin-top: 10px;
     color: rgba(76,95,116,0.5);
     padding-left: 10px;
+}
+
+
+
+
+
+
+/* Bars on the profile page */
+
+
+#dateOfDeath {
+    height: 50px;
+    background-color: #EDE9D4;
+}
+
+
+
+#dateOfDeath h2 {
+    font-family: 'ArialMT', 'Arial';
+    color: #262626;
+    font-weight: bold;
+    padding: 8px;
+    padding-left: 20px;
+}
+
+
+
+#regiment {
+    height: 50px;
+    background-color: #EDE9D4;
+}
+
+
+
+#regiment h2 {
+    font-family: 'ArialMT', 'Arial';
+    color: #262626;
+    font-weight: bold;
+    padding: 8px;
+    padding-left: 20px;
+}
+
+
+
+
+
+
+
+/* Custom page footer */
+.footer {
+  padding-top: 7px;
+  padding-left: 20px;
+  color: #777;
+  border-top: 1px solid #000000;
+  background-color: #430108;
+  height: auto;
+  margin-top: 50px;
+}
+
+#heritageTrust {
+    width: 220px;
+    padding-top: 3px;
+    display: inline-block;
+}
+
+
+#lotteryFund {
+    width: 110px;
+    padding-top: 3px;
+    padding-left: 13px;
+    display: inline-block;
+}
+
+
+#royalGreenwich {
+    width: 120px;
+    padding-top: 3px;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+
+.footer p {
+    font-size: 12px;
+    color: #EDE9D4; 
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 
@@ -573,6 +861,66 @@ table th[class*="col-"] {
 }
     
     
+    
+    .charltonImg {
+    position: relative;
+    width:100%;
+    height: 550px;
+    margin-top: 20px;
+    background-image: url(../images/Charlton%203.png);
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:top;
+}
+    
+
+
+    
+    .elthamImg {
+    position: relative;
+    width:100%;
+    height: 550px;
+    margin-top: 20px;
+    background-image: url(../images/Eltham%203.png);
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:center;
+}
+    
+    
+    
+    
+    
+    .profileImg {
+    position: relative;
+    width:100%;
+    height: 550px;
+    margin-top: 20px;
+    background-image: url(../images/Profile-picture.png);
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:top;
+}
+    
+
+    
+    
+    
+    .searchImg {
+    position: relative;
+    width:100%;
+    height: 550px;
+    margin-top: 20px;
+    background-image: url(../images/Search-page.png);
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:top;
+}
+    
+    
+    
+    
+    
   #rghtLogo {
         position: absolute;
         width:83.5px;
@@ -604,10 +952,19 @@ table th[class*="col-"] {
         margin-top: 50px;
     }
     
+   
+    
+    #heritageTrust {
+        width: 44%;
+        padding-top: 3px;
+        display: inline-block;
+        margin-left: 10%;
+    }
+    
     
     
     #royalGreenwich {
-        width: 20%;
+        width: 30%;
         padding-top: 3px;
         display: inline-block;
         margin-left: 10%;
@@ -616,7 +973,7 @@ table th[class*="col-"] {
     
     
     #lotteryFund {
-        width: 56%;
+        width: 30%;
         padding-top: 7px;
         display: inline-block;
     }
