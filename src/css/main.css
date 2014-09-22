@@ -43,10 +43,10 @@ body {
   width:100%;
   height: 550px;
   margin-top: 20px;
-  background-image: url(../images/Welcome-page.png);
+  background-image: url(../images/welcomePage.png);
   background-repeat:no-repeat;
   background-size: cover;
-  background-position:top;
+  background-position:left -20px;
 }
 
 /*#homeImg img {
@@ -184,21 +184,21 @@ body {
 
 
 
-/* Profile Page Image Overlay */
+/* Charlton Profile Page Image Overlay */
 
-.profileImg {
+.charproImg {
   position: relative;
   width:100%;
   height: 550px;
   margin-top: 20px;
-  background-image: url(../images/Profile-picture2.png);
+  background-image: url(../images/CharltonOld.png);
   background-repeat:no-repeat;
   background-size: cover;
-  background-position:center;
+  background-position:left -15px;
 }
 
 
-.profileImgOverlay {
+.charproImgOverlay {
     position: absolute;
     width: 100%;
     height: 85px;
@@ -208,7 +208,7 @@ body {
 
 
 
-.profileImgOverlay h1 {
+.charproImgOverlay h1 {
     margin-left: 18px;
     font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
     font-weight: bold;
@@ -217,13 +217,107 @@ body {
 }
 
 
-.profileImgOverlay h3 {
+.charproImgOverlay h3 {
     margin-left: 18px;
     font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
     font-weight: bold;
     color: #C1C1C1;
     display: inline-block;
 }
+
+
+
+
+
+/* Eltham Profile Page Image Overlay */
+
+.elproImg {
+  position: relative;
+  width:100%;
+  height: 550px;
+  margin-top: 20px;
+  background-image: url(../images/Eltham-War-Memorial-Image.jpg);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:left -15px;
+}
+
+
+.elproImgOverlay {
+    position: absolute;
+    width: 100%;
+    height: 85px;
+    top: 465px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+
+.elproImgOverlay h1 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+    display: inline-block;
+}
+
+
+.elproImgOverlay h3 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #C1C1C1;
+    display: inline-block;
+}
+
+
+
+
+
+
+/* Woolwich Profile Page Image Overlay */
+
+.woolproImg {
+  position: relative;
+  width:100%;
+  height: 550px;
+  margin-top: 20px;
+  background-image: url(../images/Woolwich.png);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+}
+
+
+.woolproImgOverlay {
+    position: absolute;
+    width: 100%;
+    height: 85px;
+    top: 465px;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+
+.woolproImgOverlay h1 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #EDE9D4;
+    display: inline-block;
+}
+
+
+.woolproImgOverlay h3 {
+    margin-left: 18px;
+    font-family: 'Arial-BoldMT', 'Arial Bold', 'Arial';
+    font-weight: bold;
+    color: #C1C1C1;
+    display: inline-block;
+}
+
+
+
 
 
 
@@ -595,7 +689,7 @@ body {
 }
 #people, #person, #next25, #loading 
 {
-      display:none;
+      display:block;
 }
 
 
