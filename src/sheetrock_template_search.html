@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Spreadsheets via sheetrock test 2</title>
+
+    <link rel="stylesheet" type="text/css" href="http://chriszarate.github.io/sheetrock/src/sheetrock.min.css">
+        
+    <style type="text/css">
+    	#loading {
+    		font-size: 36px;
+    		font-weight: bold;
+    	}
+    </style>
+
+    <script type="text/javascript">
+    	window.addEventListener('load', function ()
+    	{
+            // Compile the Handlebars template for HR leaders.
+            var PeopleTemplate = Handlebars.compile($('#people-template').html());  
+            
+    		// Define spreadsheet URL.
+			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1qM3kEVwzSg9sgYVfhibaF5jQdiw3E40ZVtaukCZugX4#gid=0';
+			console.log('loading');
+			// Load an entire sheet.
+			$('#people').sheetrock({
+				url: mySpreadsheet,
+                // you can select for a single ID:
+				//sql: "select A,B,D,E where A = '0' order by B asc",
+                
+                // or, search by name that starts with a string:
+                //sql: "select %id%, %surname%, %forenames%, %cemeterymemorial% where %surname% starts with 'Al' order by %surname% asc",
+                
+               //sql: "select %id%, %surname%, %forenames% order by %id% asc",
+                
+                
+                // here's another that searches if a name contains a string of characters 'bob':
+                sql: "select %id%,upper(%surname%), %forenames%,%cemetarymemorial% where upper(%surname%) contains upper(‘adams’) order by upper(%surname%) asc",
+                
+  				chunkSize: 25, // 300 rows
+                headersOff: true,
+                rowHandler: PeopleTemplate,
+  				loading: $('#loading')
+			});
+    	});
+    </script>
+  
+ 	</head>
+	
+	<body>
+
+		<p>This example shows how to format results using a 'handlebars' template for each row of data (e.g. an entry for a person).  Also, it sorts the rows by last name (B) in ascending order.</p>
+
+		<div id="loading">Loading...</div>
+		
+        <h2>People</h2>
+        <table id="people" class="table table-condensed table-striped">
+        <thead>
+        <tr>
+            <th>Surname, Forename</th>
+            <th>Cemetery</th>
+        </tr>
+        </thead>
+        <tbody>
+          <script id="people-template" type="text/x-handlebars-template">
+            <tr>
+                <td>
+              <a href="?id={{cells.id}}"><strong>{{cells.surname}}, {{cells.forenames}}</strong></a></td>
+                <td>{{cells.cemeterymemorial}}</td>
+            </tr>
+          </script>
+        </tbody>
+        </table>
+        
+	<!-- https://docs.google.com/spreadsheets/d/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/pubhtml -->
+
+    <!-- https://docs.google.com/spreadsheets/d/1qM3kEVwzSg9sgYVfhibaF5jQdiw3E40ZVtaukCZugX4/edit?usp=sharing -->
+     
+    <!-- Load jQuery from CloudFlare’s CDN. -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+
+        
+        
+    <!-- Load jQuery from CloudFlare’s CDN. -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- sheetrock for google spreadsheets API -->
+    <script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>
+
+
+  </body>
+</html>
