@@ -196,15 +196,16 @@
               
         <div id="person">
         <!--<h2>Person:</h2>!-->
-        <script id="person-template" type="text/x-handlebars-template">    
+        <script id="person-template" type="text/x-handlebars-template"> 
             <div class="date_died"><strong>
+                
               {{#if cells.date_died}}
                 {{cells.date_died}}
               {{else}}
                 ?
                 {{/if}}
                 
-             <!-- {{#if cells.surname}}
+              {{#if cells.surname}}
                 {{cells.surname}}
               {{else}}
                 ?

@@ -23,8 +23,111 @@
 
     <!-- Custom styles for this template -->
     <link href="css/main.css" rel="stylesheet">    
+      
+      
+      
+      
+                    <script type="text/javascript">
+        // This version is different because it uses the HTTP GET variable (the
+        // bit after the ? in the url) to search the database, so you can pass
+        // in a single id to search for
+        
+        // this function extracts the variable names and values from a url
+        // such as "http://blahbalh.com/somepage.html?param1=34&param2=blahblah"
+        // which gives 'param1' with a value of '34'
+        // and 'param2' with a value of 'blahblah'
+
+        // taken from: http://stackoverflow.com/questions/439463/how-to-get-get-and-post-variables-with-jquery
+        
+        function getQueryParams(qs) {
+            qs = qs.split("+").join(" ");
+            var params = {},
+                tokens,
+                re = /[?&]?([^=]+)=([^&]*)/g;
+            
+            while (tokens = re.exec(qs)) {
+                params[decodeURIComponent(tokens[1])]
+                    = decodeURIComponent(tokens[2]);
+            }
+
+            return params;
+        }
+            
+        //
+        // this function returns the GET variables passed in via the url
+        //
+        var $_GET = getQueryParams(document.location.search);
+            
+        // this function loads (or re-loads) everything from the database.
+        var loadDatabase = function()
+    	{
+            var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
+            
+            // check if id is a proper number (NaN means 'Not a Number')
+            var idIsGood = !(id == undefined || isNaN(id)); 
+            
+            //console.log(id);
+            
+            // the Handlebars template for HR leaders.
+            var HTemplate;
+            
+            var query;  // this is what sheetrock will use to search the database
+            
+            var targetElem; // the html id to load into
+            
+            var finishedLoading = function() { 
+                    targetElem.css('display','block'); 
+            };
+            
+        
+            if (!idIsGood) 
+            {
+                console.log('id was bad');
+                // if no id was given, or it was not a number, return all rows
+                query = "select %id%, %surname%, %forenames%, %regiment% order by %surname% asc";       
+                targetElem = $('#people');
+                //HTemplate = Handlebars.compile($('#people-template').html());  
+                
+                $('#next25').css('display', 'block');
+            }
+            else
+            {
+                console.log('id was good');
+                // if we found the id, do a search
+                //query = "select %id%, %surname%, %forenames%, %cemeterymemorial% where %id%="+id+" order by %surname% asc";
+                query = "select * where %id%="+id;
+                targetElem = $('#person');
+                HTemplate = Handlebars.compile($('#person-template').html()); 
+            }
+            
+            
+    		// Define spreadsheet URL.
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1CXVLyKhRwoG9ch37U9DAlZ79Lb36JizeEXOSw0UN5d0/pubhtml?gid=844286021&single=truee';
+			console.log('loading');
+			// Load an entire sheet.
+			targetElem.sheetrock({
+				url: mySpreadsheet,
+                sql: query,                
+  				chunkSize: 15, // 300 rows
+                headersOff: true,
+                rowHandler: HTemplate,
+  				loading: $('#loading'),
+                userCallback : finishedLoading
+			});  
+    	};
+            
+        window.addEventListener('load', loadDatabase);
+    </script>
+      
+      
   </head>
 
+    
+    
+    
+    
+    
+    
   <body>
 
     <div class="container">
@@ -98,8 +201,40 @@
                   <h2>Date of Death</h2>
               </div>
               
-              <div id="data">
-              </div>
+        <div id="person">
+        <!--<h2>Person:</h2>!-->
+        <script id="person-template" type="text/x-handlebars-template">    
+            <div class="date_died"><strong>
+              {{#if cells.date_died}}
+                {{cells.date_died}}
+              {{else}}
+                ?
+                {{/if}}
+                
+              {{#if cells.surname}}
+                {{cells.surname}}
+              {{else}}
+                ?
+              {{/if}},
+              
+              {{#if cells.forenames}}
+                {{cells.forenames}}
+              {{else}}
+                ?
+              {{/if}} 
+                </strong>
+            </div>
+            <div class="info">
+                <ol>
+                    <li>{{cells.age}}</li>
+                    <li>{{cells.date_of_death}}</li>
+                    <li>{{cells.cemeterymemorial}}</li>
+                    <li>{{cells.regiment}}</li>
+                </ol>
+            </div>
+        </script>
+        </div>
+              
           </div> <!--dateOfDeath!--> 
            
 
@@ -229,7 +364,16 @@
       </script>  
       
       
-      
+                     <!-- Load jQuery from CloudFlare’s CDN. -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+
+    <!-- Load jQuery from CloudFlare’s CDN. -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- sheetrock for google spreadsheets API -->
+    <!--<script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>!-->
+
+        <script src="./js/jquery.sheetrock.min.js"></script>  
       
       
   </body>

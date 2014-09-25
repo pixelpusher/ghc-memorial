@@ -76,7 +76,7 @@
             {
                 console.log('id was bad');
                 // if no id was given, or it was not a number, return all rows
-                query = "select %id%, %surname%, %forenames%, %cemeterymemorial% order by %surname% asc";
+                query = "select %id%, %surname%, %forenames% order by %surname% asc";
                 targetElem = $('#people');
                 HTemplate = Handlebars.compile($('#people-template').html());  
                 
@@ -94,7 +94,7 @@
             
             
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1qM3kEVwzSg9sgYVfhibaF5jQdiw3E40ZVtaukCZugX4#gid=0';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1rpDJrgFF8pP5VeL46-8aDESiokzSb1wwTanxcA60RaU/pubhtml?gid=1426342879&single=true';
 			console.log('loading');
 			// Load an entire sheet.
 			targetElem.sheetrock({
