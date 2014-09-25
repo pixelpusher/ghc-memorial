@@ -53,13 +53,12 @@
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
-            var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
             
-            var id = $_GET['s']
+            var search = $_GET['s']
         
             
             // check if id is a proper number (NaN means 'Not a Number')
-            var idIsGood = !(id == undefined || isNaN(id)); 
+            var searchIsGood = !(search == undefined ); 
             
             //console.log(id);
             
@@ -75,9 +74,9 @@
             };
             
         
-            if (!idIsGood) 
+            if (!searchIsGood) 
             {
-                console.log('id was bad');
+                console.log('search was bad');
                 // if no id was given, or it was not a number, return all rows
                 query = "select %id%, %surname%, %forenames%, %cemeterymemorial% order by %surname% asc";
                 targetElem = $('#people');
@@ -90,14 +89,15 @@
                 console.log('id was good');
                 // if we found the id, do a search
                 //query = "select %id%, %surname%, %forenames%, %cemeterymemorial% where %id%="+id+" order by %surname% asc";
-                query = "select * where %id%="+id;
+                query = 'select A,B,D where upper(B) contains upper("'+search+'") or upper(D) contains upper("'+search+'") order by B asc';
+                console.log (query);
                 targetElem = $('#person');
                 HTemplate = Handlebars.compile($('#person-template').html());  
             }
             
             
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1qM3kEVwzSg9sgYVfhibaF5jQdiw3E40ZVtaukCZugX4#gid=0';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/11yts8Wow7k0wQsY0WCP8dA0e9GDyPA-irHMLlvl0vuQ/pubhtml?gid=1360867631&single=true';
 			console.log('loading');
 			// Load an entire sheet.
 			targetElem.sheetrock({
@@ -129,14 +129,13 @@
 		
         <div id="person">
         <h2>Person:</h2>
-        <script id="person-template" type="text/x-handlebars-template">    
+        <script id="person-template" type="text/x-handlebars-template">     
             <div class="name"><strong>
               {{#if cells.surname}}
                 {{cells.surname}}
               {{else}}
                 ?
               {{/if}},
-              
               {{#if cells.forenames}}
                 {{cells.forenames}}
               {{else}}
@@ -150,7 +149,7 @@
                     <li>{{cells.date_of_death}}</li>
                     <li>{{cells.cemeterymemorial}}</li>
                     <li>{{cells.regiment}}</li>
-                </ol>
+                </ol> 
             </div>
         </script>
         </div>

@@ -597,10 +597,13 @@ body {
 
 
 #dateOfDeath {
+    height: auto;
+}
+
+#dateOfDeathBar {
     height: 50px;
     background-color: #EDE9D4;
 }
-
 
 
 #dateOfDeath h2 {
@@ -614,11 +617,13 @@ body {
 
 
 #regiment {
+    height: auto;
+}
+
+#regimentBar {
     height: 50px;
     background-color: #EDE9D4;
 }
-
-
 
 #regiment h2 {
     font-family: 'ArialMT', 'Arial';
@@ -687,10 +692,46 @@ body {
   font-size: 36px;
   font-weight: bold;
 }
-#people, #person, #next25, #loading 
+#people, #person, #next15, #loading 
 {
       display:block;
+      color: #A7A590;
 }
+
+
+#next15 {
+    padding-top: 20px;
+    padding-left: 21px;
+}
+
+#next15t {
+    color: #A7A590;
+}
+
+
+#namesSurfor {
+    padding-left: 21px;
+    width: 50%;
+}
+
+
+#namesReg {
+    padding-left: 60px;
+    width: 50%
+}
+
+
+#soldierNames {
+    color:#EDE9D4;
+    margin-left: 21px;
+    width: 50%
+}
+
+#regTable {
+    padding-left: 60px;
+    width: 50%;
+}
+
 
 
 /* Customize container */

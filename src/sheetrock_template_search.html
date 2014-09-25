@@ -19,7 +19,7 @@
             var PeopleTemplate = Handlebars.compile($('#people-template').html());  
             
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1qM3kEVwzSg9sgYVfhibaF5jQdiw3E40ZVtaukCZugX4#gid=0';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/11yts8Wow7k0wQsY0WCP8dA0e9GDyPA-irHMLlvl0vuQ/pubhtml?gid=1360867631&single=true';
 			console.log('loading');
 			// Load an entire sheet.
 			$('#people').sheetrock({
@@ -34,7 +34,7 @@
                 
                 
                 // here's another that searches if a name contains a string of characters 'bob':
-                sql: "select %id%,upper(%surname%), %forenames%,%cemetarymemorial% where upper(%surname%) contains upper(‘adams’) order by upper(%surname%) asc",
+                sql: 'select A,B,D where upper(B) contains upper("Wil") or upper(D) contains upper("Wil") order by B asc',
                 
   				chunkSize: 25, // 300 rows
                 headersOff: true,
@@ -84,7 +84,7 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 	<!-- sheetrock for google spreadsheets API -->
-    <script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>
+    <script src="./js/jquery.sheetrock.min.js"></script>
 
 
   </body>
