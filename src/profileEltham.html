@@ -38,6 +38,8 @@
 
         // taken from: http://stackoverflow.com/questions/439463/how-to-get-get-and-post-variables-with-jquery
         
+        // Deprecated since version 0.8.0       
+                        
         function getQueryParams(qs) {
             qs = qs.split("+").join(" ");
             var params = {},
@@ -57,6 +59,7 @@
         //
         var $_GET = getQueryParams(document.location.search);
             
+                        
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
@@ -202,7 +205,7 @@
         <script id="person-template" type="text/x-handlebars-template">    
             <div class="date_died"><strong>
               {{#if cells.date_died}}
-                {{cells.date_died}}
+                {{formatDate cells.date_died}}
               {{else}}
                 ?
                 {{/if}}
@@ -368,8 +371,21 @@
 	<!-- sheetrock for google spreadsheets API -->
     <!--<script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>!-->
 
-        <script src="./js/jquery.sheetrock.min.js"></script> 
+        
       
+    <script>
+    Handlebars.registerHelper("formatDate", function(datetime) {
+        // DEBUG
+        //console.log(datetime);
+        
+        var theDate = new Date(datetime); // new date from string
+        
+        return new Handlebars.SafeString(theDate.getDay() + '/' + theDate.getMonth() + '/' + theDate.getFullYear());
+            
+    });
       
+    </script>
+      
+      <script src="./js/jquery.sheetrock.min.js"></script> 
   </body>
 </html>
