@@ -50,6 +50,9 @@
 
             return params;
         }
+                        
+                        
+                        
             
         //
         // this function returns the GET variables passed in via the url
@@ -133,18 +136,14 @@
       <div class="charproImg">
          <!--<img src="images/Welcome-page.png"> -->
         <div class="charproImgOverlay">
-            <h1>Truman Huse</h1>
-            <h3>Age: 25</h3>
+            <h1>Charlton Memorial Profile</h1>
+            <!--<h3>Age: 25</h3>!-->
         </div>
           
       </div>
         
         
       <a href="index.html"> <img src="images/Ribbon-Logo.png" id="rghtLogo"/></a>
-        
-     <div id="desTitle">
-      <h2>Profile</h2>
-        </div>
         
         <hr id="desLine" size="30" width="98%">
         
@@ -189,24 +188,18 @@
            
            
            
-          <div id="dateOfDeath">   
-              <div id="dateOfDeathBar"> 
-                  <h2>Date of Death</h2>
+          <div id="profileInfo">   
+              <div id="profileInfoBar"> 
+                  <h2>More Information</h2>
               </div>
               
         <div id="person">
         <!--<h2>Person:</h2>!-->
         <script id="person-template" type="text/x-handlebars-template"> 
-            <div class="date_died"><strong>
-                
-              {{#if cells.date_died}}
-                {{cells.date_died}}
-              {{else}}
-                ?
-                {{/if}}
+        <!--    <div class="more_info"><strong>
                 
               {{#if cells.surname}}
-                {{cells.surname}}
+                <h4 id="name">Name:</h4>{{cells.surname}}
               {{else}}
                 ?
               {{/if}},
@@ -216,42 +209,57 @@
               {{else}}
                 ?
               {{/if}} 
-                </strong>
+                
+                
+                
+              {{#if cells.date_died}}
+                <h4 id="date_died">Date Of Death:</h4>{{formatDate cells.date_died}}
+              {{else}}
+                ?
+                {{/if}}
+                
+                </strong> !-->
+                
+                
             </div>
             <div class="info">
-                <ol>
-                    <li>{{cells.age}}</li>
-                    <li>{{cells.date_of_death}}</li>
-                    <li>{{cells.cemeterymemorial}}</li>
-                    <li>{{cells.regiment}}</li>
-                </ol> !-->
+                <ul>
+                    <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
+                    <li><h4>Age:</h4>
+                        {{#if cells.age_at_death}}
+                        {{cells.age_at_death}}
+                        {{else}} ?
+                        {{/if}}
+                        </li> 
+                    <li><h4>Date of Death:</h4>              
+                        {{#if cells.date_died}}
+                        {{formatDate cells.date_died}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                    <li><h4>Rank:</h4>
+                        {{#if cells.rank}}
+                        {{cells.rank}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                    <li><h4>Regiment:</h4>
+                        {{#if cells.regiment}}
+                        {{cells.regiment}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                </ul>
             </div>
         </script>
         </div>
-          </div> <!--dateOfDeath!--> 
+          </div> <!--profileInfo!--> 
            
 
            
-          <div id="regiment">   
-              <div id="regimentBar"> 
-                  <h2>Regiment / Rank</h2>
-              </div>
-              <div id="person">
-               <script id="person-template" type="text/x-handlebars-template">
-                   <div class="date_died"><strong>
-                {{#if cells.regiment}}
-                  {{cells.regiment}}
-                {{else}}
-                  ?
-                  {{/if}}
-                      </strong>
-                  </div>
-              </script>
-             </div>
-              
-              <p>what on earth</p>
-                      
-          </div> <!--regiment!--> 
                    
            
            
@@ -378,6 +386,23 @@
 	<!-- sheetrock for google spreadsheets API -->
     <!--<script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>!-->
 
+         <script>
+    Handlebars.registerHelper("formatDate", function(datetime) {
+        // DEBUG
+        //console.log(datetime);
+        
+        
+        var theDate = new Date(datetime); // new date from string
+
+        return new Handlebars.SafeString(theDate.getDate() + '/' + (theDate.getMonth() + 1) + '/' + theDate.getFullYear());
+            
+
+        
+    });
+      
+    </script>
+      
+      
         <script src="./js/jquery.sheetrock.min.js"></script> 
       
       

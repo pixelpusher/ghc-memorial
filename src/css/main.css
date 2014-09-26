@@ -596,17 +596,17 @@ body {
 /* Bars on the profile page */
 
 
-#dateOfDeath {
+#profileInfo {
     height: auto;
 }
 
-#dateOfDeathBar {
+#profileInfoBar {
     height: 50px;
     background-color: #EDE9D4;
 }
 
 
-#dateOfDeath h2 {
+#profileInfo h2 {
     font-family: 'ArialMT', 'Arial';
     color: #262626;
     font-weight: bold;
@@ -616,23 +616,28 @@ body {
 
 
 
-#regiment {
-    height: auto;
+#person{
+    padding-left: 0px;
 }
 
-#regimentBar {
-    height: 50px;
-    background-color: #EDE9D4;
+
+#person h4{
+    display: inline-block;
+    padding-right: 20px;
+    color: #A7A590;
 }
 
-#regiment h2 {
-    font-family: 'ArialMT', 'Arial';
-    color: #262626;
-    font-weight: bold;
-    padding: 8px;
-    padding-left: 20px;
+.info ul {
+    list-style: none;
+    padding-left: 15px;
 }
 
+
+.info li {
+    color: #EDE9D4;
+    font-size: 18px;
+    padding-left: 10px;
+}
 
 
 
