@@ -58,7 +58,8 @@
         // this function returns the GET variables passed in via the url
         //
         var $_GET = getQueryParams(document.location.search);
-            
+                    
+                  
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
@@ -66,6 +67,7 @@
             
             // check if id is a proper number (NaN means 'Not a Number')
             var idIsGood = !(id == undefined || isNaN(id)); 
+            
             
             //console.log(id);
             
@@ -99,8 +101,8 @@
                 query = "select * where %id%="+id;
                 targetElem = $('#person');  
                 HTemplate = Handlebars.compile($('#person-template').html());  
-            }
-            
+            };            
+             
             
     		// Define spreadsheet URL.
 			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/11yts8Wow7k0wQsY0WCP8dA0e9GDyPA-irHMLlvl0vuQ/pubhtml?gid=1360867631&single=true';
@@ -173,7 +175,7 @@
             
            <div id="searchHeader">
                <div id="searchHeadBar">
-                    <h2>Search</h2>
+                    <h2>Search Charlton Memorial</h2>
                </div>
                
             <form action="" id="search-form">
@@ -197,34 +199,9 @@
                   <h2>The Names</h2>
               </div>
               
-        <div id="person">
-        <!--<h2>Person:</h2>!-->
-        <script id="person-template" type="text/x-handlebars-template">    
-            <div class="name"><strong>
-              {{#if cells.surname}}
-                {{cells.surname}}
-              {{else}}
-                ?
-              {{/if}},
               
-              {{#if cells.forenames}}
-                {{cells.forenames}}
-              {{else}}
-                ?
-              {{/if}}
-                </strong>
-            </div>
-            <div class="info">
-                <ol>
-                    <li>{{cells.age}}</li>
-                    <li>{{cells.date_of_death}}</li>
-                    <li>{{cells.cemeterymemorial}}</li>
-                    <li>{{cells.regiment}}</li>
-                </ol>
-            </div>
-        </script>
-        </div>
-            
+ 
+              
         <div id="people">
         <!--<h2>People</h2>!-->
         <table class="table table-condensed table-striped">
@@ -258,6 +235,53 @@
         </tbody>
         </table>
         </div>
+              
+              
+              
+        <div id="person">
+        <!--<h2>Person:</h2>!-->
+        <script id="person-template" type="text/x-handlebars-template">    
+            <div class="searchInfo"><strong>
+                <ul>
+                    <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
+                    <li><h4>Age:</h4>
+                        {{#if cells.age_at_death}}
+                        {{cells.age_at_death}}
+                        {{else}} ?
+                        {{/if}}
+                        </li> 
+                    <li><h4>Date of Death:</h4>              
+                        {{#if cells.date_died}}
+                        {{formatDate cells.date_died}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                    <li><h4>Rank:</h4>
+                        {{#if cells.rank}}
+                        {{cells.rank}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                    <li><h4>Regiment:</h4>
+                        {{#if cells.regiment}}
+                        {{cells.regiment}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                </ul>
+                <br><br>
+                </strong>
+            </div>
+
+        </script>
+        </div>
+              
+              
+            
+
         
         <div id="next15"><a href="javascript:loadDatabase();" id="next15t">next 15</a></div>
               
@@ -356,10 +380,11 @@
     <![endif]-->
 
       
-         <script type="text/javascript">
+                 <script type="text/javascript">
       
     var defaultText = "Search by Name, Memorial, Personal info";
 	var searchBox = document.getElementById("search");
+
  
 	//default text after load
 	searchBox.value = defaultText;
@@ -369,18 +394,18 @@
 		if (this.value == defaultText) {//clear text field
 			this.value = '';
 		}
-	}
+	};
  
 	//on blur behaviour
 	searchBox.onblur = function() {
 		if (this.value == "") {//restore default text
 			this.value = defaultText;
 		}
-	}
-          
+	};
+    
+   
       </script>  
-      
-      
+    
       
       
           <!-- Load jQuery from CloudFlare’s CDN. -->
@@ -392,6 +417,26 @@
 	<!-- sheetrock for google spreadsheets API -->
     <!--<script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>!-->
 
+      
+    <script>
+    Handlebars.registerHelper("formatDate", function(datetime) {
+        // DEBUG
+        //console.log(datetime);
+        
+        
+        var theDate = new Date(datetime); // new date from string
+
+        return new Handlebars.SafeString(theDate.getDate() + '/' + (theDate.getMonth() + 1) + '/' + theDate.getFullYear());
+            
+
+        
+    });
+      
+    </script>  
+      
+      
+      
+      
         <script src="./js/jquery.sheetrock.min.js"></script> 
       
       

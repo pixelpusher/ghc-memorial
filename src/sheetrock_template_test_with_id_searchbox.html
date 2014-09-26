@@ -51,11 +51,13 @@
         var $_GET = getQueryParams(document.location.search);
             
         // this function loads (or re-loads) everything from the database.
+        
+        var search;
+        
         var loadDatabase = function()
     	{
-            
-            var search = $_GET['s']
         
+            search = search || $_GET['s'];
             
             // check if id is a proper number (NaN means 'Not a Number')
             var searchIsGood = !(search == undefined ); 
@@ -78,7 +80,7 @@
             {
                 console.log('search was bad');
                 // if no id was given, or it was not a number, return all rows
-                query = "select %id%, %surname%, %forenames%, %cemeterymemorial% order by %surname% asc";
+                query = "select %id%, %surname%, %forenames%, %regiment% order by %surname% asc";
                 targetElem = $('#people');
                 HTemplate = Handlebars.compile($('#people-template').html());  
                 
@@ -89,7 +91,7 @@
                 console.log('id was good');
                 // if we found the id, do a search
                 //query = "select %id%, %surname%, %forenames%, %cemeterymemorial% where %id%="+id+" order by %surname% asc";
-                query = 'select A,B,D where upper(B) contains upper("'+search+'") or upper(D) contains upper("'+search+'") order by B asc';
+                query = 'select A,B,C where upper(B) contains upper("'+search+'") or upper(C) contains upper("'+search+'") order by B asc';
                 console.log (query);
                 targetElem = $('#person');
                 HTemplate = Handlebars.compile($('#person-template').html());  
@@ -97,7 +99,7 @@
             
             
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/11yts8Wow7k0wQsY0WCP8dA0e9GDyPA-irHMLlvl0vuQ/pubhtml?gid=1360867631&single=true';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1rpDJrgFF8pP5VeL46-8aDESiokzSb1wwTanxcA60RaU/pubhtml?gid=1426342879&single=true';
 			console.log('loading');
 			// Load an entire sheet.
 			targetElem.sheetrock({
@@ -189,6 +191,59 @@
         </div>
         
         <div id="next25"><a href="javascript:loadDatabase();">next 25</a></div>
+        
+        
+        
+                   <div id="searchHeader">
+               <div id="searchHeadBar">
+                    <h2>Search</h2>
+               </div>
+               
+            <form action="" id="search-form">
+                <fieldset>
+                    <input type="text" id="s" name="s" placeholder=""/>
+                    <!-- <input type="submit" id="search-submit" value="Search" /> -->
+                </fieldset>
+            </form>
+           </div> <!--searchHeader!-->
+        
+        
+                 <script type="text/javascript">
+      
+    var defaultText = "Search by Name, Memorial, Personal info";
+	var searchBox = document.getElementById("s");
+
+ 
+	//default text after load
+	searchBox.value = defaultText;
+ 
+	//on focus behaviour
+	searchBox.onfocus = function() {
+		if (this.value == defaultText) {//clear text field
+			this.value = '';
+		}
+	};
+ 
+	//on blur behaviour
+	searchBox.onblur = function() {
+		if (this.value == "") {//restore default text
+			this.value = defaultText;
+		}
+	};
+          
+    
+    searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+            console.log ("hitEnter");
+        var newLocation = "sheetrock_template_test_with_id_searchbox.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };
+    
+    
+    
+      </script>  
         
         
         

@@ -58,14 +58,20 @@
         // this function returns the GET variables passed in via the url
         //
         var $_GET = getQueryParams(document.location.search);
+                        
+        //var search;
             
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
+            
+            //search = search || $_GET['s'];
+            
             var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
             
             // check if id is a proper number (NaN means 'Not a Number')
             var idIsGood = !(id == undefined || isNaN(id)); 
+        
             
             //console.log(id);
             
@@ -100,6 +106,7 @@
                 targetElem = $('#person');
                 HTemplate = Handlebars.compile($('#person-template').html()); 
             }
+            
             
             
     		// Define spreadsheet URL.
@@ -169,12 +176,12 @@
             
            <div id="searchHeader">
                <div id="searchHeadBar">
-                    <h2>Search</h2>
+                    <h2>Search Charlton Memorial</h2>
                </div>
                
             <form action="" id="search-form">
                 <fieldset>
-                    <input type="text" id="search" name="search" placeholder=""/>
+                    <input type="text" id="s" name="s" placeholder=""/>
                     <!-- <input type="submit" id="search-submit" value="Search" /> -->
                 </fieldset>
             </form>
@@ -188,7 +195,7 @@
            
            
            
-          <div id="profileInfo">   
+    <div id="profileInfo">   
               <div id="profileInfoBar"> 
                   <h2>More Information</h2>
               </div>
@@ -221,7 +228,7 @@
                 </strong> !-->
                 
                 
-            </div>
+            
             <div class="info">
                 <ul>
                     <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
@@ -253,9 +260,9 @@
                         {{/if}}
                     </li>
                 </ul>
-            </div>
+            </div> <!--info!--> 
         </script>
-        </div>
+        </div> <!--person!--> 
           </div> <!--profileInfo!--> 
            
 
@@ -355,7 +362,7 @@
          <script type="text/javascript">
       
     var defaultText = "Search by Name, Memorial, Personal info";
-	var searchBox = document.getElementById("search");
+	var searchBox = document.getElementById("s");
  
 	//default text after load
 	searchBox.value = defaultText;
@@ -365,15 +372,24 @@
 		if (this.value == defaultText) {//clear text field
 			this.value = '';
 		}
-	}
+	};
  
 	//on blur behaviour
 	searchBox.onblur = function() {
 		if (this.value == "") {//restore default text
 			this.value = defaultText;
 		}
-	}
+	};
           
+             
+    searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+        console.log ("hitEnter");
+        var newLocation = "profileCharlton.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };         
       </script>  
       
       
@@ -400,7 +416,7 @@
         
     });
       
-    </script>
+    </script> 
       
       
         <script src="./js/jquery.sheetrock.min.js"></script> 

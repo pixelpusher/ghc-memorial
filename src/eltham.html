@@ -184,7 +184,7 @@
                
             <form action="" id="search-form">
                 <fieldset>
-                    <input type="text" id="search" name="search" placeholder=""/>
+                    <input type="text" id="s" name="s" placeholder=""/>
                     <!-- <input type="submit" id="search-submit" value="Search" /> -->
                 </fieldset>
             </form>
@@ -365,7 +365,7 @@
          <script type="text/javascript">
       
     var defaultText = "Search by Name, Memorial, Personal info";
-	var searchBox = document.getElementById("search");
+	var searchBox = document.getElementById("s");
  
 	//default text after load
 	searchBox.value = defaultText;
@@ -375,15 +375,25 @@
 		if (this.value == defaultText) {//clear text field
 			this.value = '';
 		}
-	}
+	};
  
 	//on blur behaviour
 	searchBox.onblur = function() {
 		if (this.value == "") {//restore default text
 			this.value = defaultText;
 		}
-	}
+	};
           
+    
+        searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+        console.log ("hitEnter");
+        var newLocation = "eltham.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };
+    
       </script>  
       
       

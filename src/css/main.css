@@ -578,7 +578,7 @@ body {
 }
 
 
-#search {
+#s {
     width: 95%;
     height: 40px;
     margin-left: 2.3%;
@@ -657,6 +657,17 @@ body {
 }
 
 
+.searchInfo ul {
+    list-style: none;
+    padding-left: 15px;
+}
+
+
+.searchInfo li {
+    color: #EDE9D4;
+    font-size: 18px;
+    padding-left: 10px;
+}
 
 
 
@@ -730,6 +741,11 @@ body {
     color: #A7A590;
 }
 
+
+
+#nameSearch{
+    padding-left: 20px;
+}
 
 #namesSurfor {
     padding-left: 21px;
