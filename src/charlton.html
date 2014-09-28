@@ -59,10 +59,15 @@
         //
         var $_GET = getQueryParams(document.location.search);
                 
-                     
+     
+var search;                  
+                  
+                  
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
+            
+search = search || $_GET['s'];            
             
             var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
             
@@ -71,6 +76,8 @@
             var idIsGood = !(id == undefined || isNaN(id)); 
             
             //console.log(id);
+            
+var searchIsGood = !(search == undefined );             
             
             // the Handlebars template for HR leaders.
             var HTemplate;
@@ -83,8 +90,38 @@
                     targetElem.css('display','block'); 
             };
             
+  
+            
+
+            if (!searchIsGood) 
+            {
+                console.log('search was bad');
+                // if no id was given, or it was not a number, return all rows
+                query = "select %id%, %surname%, %forenames%, %regiment% order by %surname% asc";
+         
+                
+                targetElem = $('#people');
+                HTemplate = Handlebars.compile($('#people-template').html());  
+                
+                $('#next25').css('display', 'block');
+            }
+            else
+            {
+                console.log('id was good');
+                // if we found the id, do a search
+                //query = "select %id%, %surname%, %forenames%, %cemeterymemorial% where %id%="+id+" order by %surname% asc";
+                query = 'select A,B,D,E,G,H,I where upper(B) contains upper("'+search+'") or upper(D) contains upper("'+search+'") order by B asc';
+                console.log (query);
+                targetElem = $('#person');
+                HTemplate = Handlebars.compile($('#person-template').html());
+                $('#next15').css('display', 'none');
+            };            
+            
+            
         
-            if (!idIsGood) 
+            
+            
+         /*   if (!idIsGood) 
             {
                 console.log('id was bad');
                 // if no id was given, or it was not a number, return all rows
@@ -102,7 +139,7 @@
                 query = "select * where %id%="+id;
                 targetElem = $('#person');  
                 HTemplate = Handlebars.compile($('#person-template').html());  
-            };            
+            };            */
              
             
     
@@ -247,12 +284,12 @@
         <div id="person">
         <!--<h2>Person:</h2>!-->
         <script id="person-template" type="text/x-handlebars-template">    
-            <div class="name"><strong>
+            <div class="info"><strong>
                 <ul>
                     <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
                     <li><h4>Age:</h4>
-                        {{#if cells.age_at_death}}
-                        {{cells.age_at_death}}
+                        {{#if cells.age_at_death }}
+                        {{cells.age_at_death }}
                         {{else}} ?
                         {{/if}}
                         </li> 

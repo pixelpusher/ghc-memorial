@@ -59,7 +59,7 @@
         //
         var $_GET = getQueryParams(document.location.search);
                         
-        var search;
+//var search;
             
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
@@ -72,7 +72,7 @@
             // check if id is a proper number (NaN means 'Not a Number')
             var idIsGood = !(id == undefined || isNaN(id)); 
         
-            search = search || $_GET['s'];
+//search = search || $_GET['s'];
             //console.log(id);
             
             // the Handlebars template for HR leaders.
@@ -201,6 +201,54 @@
                   <h2>More Information</h2>
               </div>
         <div id="loading"><h5>Loading...</h5></div>      
+        
+ 
+        
+        
+<div id="people">
+        <!--<h2>People</h2>!-->
+        <table class="table table-condensed table-striped">
+        <thead>
+        <tr>
+            <th id="namesSurfor">Surname, Forename</th>
+            <th id="namesReg">Regiment</th>
+        </tr>
+        </thead>
+        <tbody id="people_table">
+          <script id="people-template" type="text/x-handlebars-template">
+            <tr>
+                <td>
+              <a href="?id={{cells.id}}" id="soldierNames">
+                  <strong>
+                  {{#if cells.surname}}
+                    {{cells.surname}}
+                  {{else}}
+                    ?
+                  {{/if}},
+                  
+                  {{#if cells.forenames}}
+                    {{cells.forenames}}
+                  {{else}}
+                    ?
+                  {{/if}}
+                  </strong></a></td>
+                <td id="regTable">{{cells.regiment}}</td>
+            </tr>
+          </script>
+        </tbody>
+        </table>
+        </div>        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <div id="person">
         <!--<h2>Person:</h2>!-->
         <script id="person-template" type="text/x-handlebars-template"> 
@@ -232,7 +280,7 @@
             <!--</div>!-->
             
             
-            <div class="info">
+            <div class="info"> <strong>
                 <ul>
                     <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
                     <li><h4>Age:</h4>
@@ -263,6 +311,8 @@
                         {{/if}}
                     </li>
                 </ul>
+                <br><br>
+                </strong>
             </div> <!--info!--> 
         </script>
         </div> <!--person!--> 
@@ -391,7 +441,7 @@
         if(e.which == 13) {
         e.preventDefault();
         console.log ("hitEnter");
-        var newLocation = "profileCharlton.html?s=" +searchBox.value;
+        var newLocation = "Charlton.html?s=" +searchBox.value;
         window.location.assign(newLocation);
         }
     };         
