@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <title>Spreadsheets via sheetrock using IDs to search</title>
+    <title>Charlton page</title>
 
   <!--  <link rel="stylesheet" type="text/css" href="http://chriszarate.github.io/sheetrock/src/sheetrock.min.css">!-->
         
@@ -13,7 +13,7 @@
         #people, #person, #next25 {
             display:none;
         }
-        #next25 { 
+        #next25 {
             margin: 2em 1em;
             font-weight: bold;
         }
@@ -51,12 +51,22 @@
         var $_GET = getQueryParams(document.location.search);
             
         // this function loads (or re-loads) everything from the database.
+        
+        var search;
+        
         var loadDatabase = function()
     	{
-            var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
+        
+            search = search || $_GET['s'];
+            
+            
+var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
+            
+// check if id is a proper number (NaN means 'Not a Number')
+var idIsGood = !(id == undefined || isNaN(id));             
             
             // check if id is a proper number (NaN means 'Not a Number')
-            var idIsGood = !(id == undefined || isNaN(id)); 
+            var searchIsGood = !(search == undefined ); 
             
             //console.log(id);
             
@@ -70,13 +80,16 @@
             var finishedLoading = function() { 
                     targetElem.css('display','block'); 
             };
+                 
             
-        
-            if (!idIsGood) 
+                       
+            if (!searchIsGood) 
             {
-                console.log('id was bad');
+                console.log('search was bad');
                 // if no id was given, or it was not a number, return all rows
-                query = "select %id%, %surname%, %forenames% order by %surname% asc";
+                query = "select %id%, %surname%, %forenames%, %regiment% order by %surname% asc";
+         
+                
                 targetElem = $('#people');
                 HTemplate = Handlebars.compile($('#people-template').html());  
                 
@@ -87,10 +100,11 @@
                 console.log('id was good');
                 // if we found the id, do a search
                 //query = "select %id%, %surname%, %forenames%, %cemeterymemorial% where %id%="+id+" order by %surname% asc";
-                query = "select * where %id%="+id;
+                query = 'select A,B,C where upper(B) contains upper("'+search+'") or upper(C) contains upper("'+search+'") order by B asc';
+                console.log (query);
                 targetElem = $('#person');
                 HTemplate = Handlebars.compile($('#person-template').html());  
-            }
+            };
             
             
     		// Define spreadsheet URL.
@@ -126,14 +140,13 @@
 		
         <div id="person">
         <h2>Person:</h2>
-        <script id="person-template" type="text/x-handlebars-template">    
+        <script id="person-template" type="text/x-handlebars-template">     
             <div class="name"><strong>
               {{#if cells.surname}}
                 {{cells.surname}}
               {{else}}
                 ?
               {{/if}},
-              
               {{#if cells.forenames}}
                 {{cells.forenames}}
               {{else}}
@@ -147,7 +160,7 @@
                     <li>{{cells.date_of_death}}</li>
                     <li>{{cells.cemeterymemorial}}</li>
                     <li>{{cells.regiment}}</li>
-                </ol>
+                </ol> 
             </div>
         </script>
         </div>
@@ -165,7 +178,7 @@
           <script id="people-template" type="text/x-handlebars-template">
             <tr>
                 <td>
-              <a href="?id={{cells.id}}">
+              <a href="sheetrock_search_list_2.html?id={{cells.id}}">
                   <strong>
                   {{#if cells.surname}}
                     {{cells.surname}}
@@ -187,6 +200,59 @@
         </div>
         
         <div id="next25"><a href="javascript:loadDatabase();">next 25</a></div>
+        
+        
+        
+                   <div id="searchHeader">
+               <div id="searchHeadBar">
+                    <h2>Search</h2>
+               </div>
+               
+            <form action="" id="search-form">
+                <fieldset>
+                    <input type="text" id="s" name="s" placeholder=""/>
+                    <!-- <input type="submit" id="search-submit" value="Search" /> -->
+                </fieldset>
+            </form>
+           </div> <!--searchHeader!-->
+        
+        
+                 <script type="text/javascript">
+      
+    var defaultText = "Search by Name, Memorial, Personal info";
+	var searchBox = document.getElementById("s");
+
+ 
+	//default text after load
+	searchBox.value = defaultText;
+ 
+	//on focus behaviour
+	searchBox.onfocus = function() {
+		if (this.value == defaultText) {//clear text field
+			this.value = '';
+		}
+	};
+ 
+	//on blur behaviour
+	searchBox.onblur = function() {
+		if (this.value == "") {//restore default text
+			this.value = defaultText;
+		}
+	};
+          
+    
+    searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+            console.log ("hitEnter");
+        var newLocation = "sheetrock_search_list.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };
+    
+    
+    
+      </script>  
         
         
         

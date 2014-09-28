@@ -58,16 +58,17 @@
         // this function returns the GET variables passed in via the url
         //
         var $_GET = getQueryParams(document.location.search);
-                    
-                  
+                
+                     
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
+            
             var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
+            
             
             // check if id is a proper number (NaN means 'Not a Number')
             var idIsGood = !(id == undefined || isNaN(id)); 
-            
             
             //console.log(id);
             
@@ -91,7 +92,7 @@
                 targetElem = $('#people');
                 HTemplate = Handlebars.compile($('#people-template').html());  
                 
-                $('#next25').css('display', 'block');
+                $('#next15').css('display', 'block');
             }
             else
             {
@@ -104,8 +105,13 @@
             };            
              
             
+    
+            
+            
+            
+            
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/11yts8Wow7k0wQsY0WCP8dA0e9GDyPA-irHMLlvl0vuQ/pubhtml?gid=1360867631&single=true';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/10-jmwpMLESgR_tWXdtdEK6TUjfWx_VdE6zRULtnwhJo/pubhtml?gid=1626580285&single=true';
 			console.log('loading');
 			// Load an entire sheet.
 			targetElem.sheetrock({
@@ -180,7 +186,7 @@
                
             <form action="" id="search-form">
                 <fieldset>
-                    <input type="text" id="search" name="search" placeholder=""/>
+                    <input type="text" id="s" name="s" placeholder=""/>
                     <!-- <input type="submit" id="search-submit" value="Search" /> -->
                 </fieldset>
             </form>
@@ -200,7 +206,7 @@
               </div>
               
               
- 
+ 		<div id="loading"><h5>Loading...</h5></div>
               
         <div id="people">
         <!--<h2>People</h2>!-->
@@ -241,7 +247,7 @@
         <div id="person">
         <!--<h2>Person:</h2>!-->
         <script id="person-template" type="text/x-handlebars-template">    
-            <div class="searchInfo"><strong>
+            <div class="name"><strong>
                 <ul>
                     <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
                     <li><h4>Age:</h4>
@@ -351,6 +357,8 @@
             <img id="royalGreenwich" src="images/royalGreenwich.png" alt="Royal Borough of Greenwich"/>  
          <!-- </div> -->
              
+             
+            <img id="siteCredits" src="images/credits.png" alt="Website created by X.C.Smith & James Alexander Doble" />  
           
         <p> All content &copy; 2014 Royal Greenwich Heritage Trust </p>
           </div>
@@ -383,7 +391,7 @@
                  <script type="text/javascript">
       
     var defaultText = "Search by Name, Memorial, Personal info";
-	var searchBox = document.getElementById("search");
+	var searchBox = document.getElementById("s");
 
  
 	//default text after load
@@ -404,6 +412,17 @@
 	};
     
    
+    searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+            console.log ("hitEnter");
+        var newLocation = "Charlton.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };                
+                     
+                     
+                     
       </script>  
     
       

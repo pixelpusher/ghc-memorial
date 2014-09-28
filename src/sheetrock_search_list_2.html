@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <title>Spreadsheets via sheetrock using IDs to search</title>
+    <title>Charlton Profile page</title>
 
   <!--  <link rel="stylesheet" type="text/css" href="http://chriszarate.github.io/sheetrock/src/sheetrock.min.css">!-->
         
@@ -188,6 +188,58 @@
         
         <div id="next25"><a href="javascript:loadDatabase();">next 25</a></div>
         
+
+        
+                   <div id="searchHeader">
+               <div id="searchHeadBar">
+                    <h2>Search</h2>
+               </div>
+               
+            <form action="" id="search-form">
+                <fieldset>
+                    <input type="text" id="s" name="s" placeholder=""/>
+                    <!-- <input type="submit" id="search-submit" value="Search" /> -->
+                </fieldset>
+            </form>
+           </div> <!--searchHeader!-->        
+        
+
+                 <script type="text/javascript">
+      
+    var defaultText = "Search by Name, Memorial, Personal info";
+	var searchBox = document.getElementById("s");
+
+ 
+	//default text after load
+	searchBox.value = defaultText;
+ 
+	//on focus behaviour
+	searchBox.onfocus = function() {
+		if (this.value == defaultText) {//clear text field
+			this.value = '';
+		}
+	};
+ 
+	//on blur behaviour
+	searchBox.onblur = function() {
+		if (this.value == "") {//restore default text
+			this.value = defaultText;
+		}
+	};
+          
+    
+    searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+            console.log ("hitEnter");
+        var newLocation = "sheetrock_search_list.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };
+    
+    
+    
+      </script>          
         
         
 	<!-- https://docs.google.com/spreadsheets/d/1Nn50GZXtwhDZVIiOqFBgsQ40N6gyPHyz0yYiJDiByrs/pubhtml -->

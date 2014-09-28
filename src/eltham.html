@@ -58,9 +58,17 @@
         var $_GET = getQueryParams(document.location.search);
             
         // this function loads (or re-loads) everything from the database.
+                  
+                  
+                  
+        var search;          
+                  
         var loadDatabase = function()
     	{
             var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
+            search = search || $_GET['s'];
+            
+            var searchIsGood = !(search == undefined ); 
             
             // check if id is a proper number (NaN means 'Not a Number')
             var idIsGood = !(id == undefined || isNaN(id)); 
@@ -100,8 +108,32 @@
             }
             
             
+            
+            if (!searchIsGood) 
+            {
+                console.log('search was bad');
+                // if no id was given, or it was not a number, return all rows
+                query = "select %id%, %surname%, %forenames%, %regiment% order by %surname% asc";
+                targetElem = $('#people');
+                HTemplate = Handlebars.compile($('#people-template').html());  
+                
+                $('#next25').css('display', 'block');
+            }
+            else
+            {
+                console.log('id was good');
+                // if we found the id, do a search
+                //query = "select %id%, %surname%, %forenames%, %cemeterymemorial% where %id%="+id+" order by %surname% asc";
+                query = 'select A,B,C where upper(B) contains upper("'+search+'") or upper(C) contains upper("'+search+'") order by B asc';
+                console.log (query);
+                targetElem = $('#person');
+                HTemplate = Handlebars.compile($('#person-template').html());  
+            };
+            
+            
+            
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1rpDJrgFF8pP5VeL46-8aDESiokzSb1wwTanxcA60RaU/pubhtml?gid=1426342879&single=true';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1rZbOz01UKUET584bytMGjxhJdsfVZsHUUE1XZSZQyRE/pubhtml?gid=795098952&single=true';
             
 			console.log('loading');
 			// Load an entire sheet.
@@ -179,7 +211,7 @@
             
            <div id="searchHeader">
                <div id="searchHeadBar">
-                    <h2>Search</h2>
+                    <h2>Search Eltham Memorial</h2>
                </div>
                
             <form action="" id="search-form">
@@ -334,6 +366,9 @@
          <!-- </div> -->
              
           
+            <img id="siteCredits" src="images/credits.png" alt="Website created by X.C.Smith & James Alexander Doble" />
+             
+             
         <p> All content &copy; 2014 Royal Greenwich Heritage Trust </p>
           </div>
           
@@ -362,10 +397,11 @@
     <![endif]-->
 
       
-         <script type="text/javascript">
+                 <script type="text/javascript">
       
     var defaultText = "Search by Name, Memorial, Personal info";
 	var searchBox = document.getElementById("s");
+
  
 	//default text after load
 	searchBox.value = defaultText;
@@ -385,16 +421,18 @@
 	};
           
     
-        searchBox.onkeydown = function(e) {
+    searchBox.onkeydown = function(e) {
         if(e.which == 13) {
         e.preventDefault();
-        console.log ("hitEnter");
-        var newLocation = "eltham.html?s=" +searchBox.value;
+            console.log ("hitEnter");
+        var newLocation = "sheetrock_template_test_with_id_searchbox.html?s=" +searchBox.value;
         window.location.assign(newLocation);
         }
     };
     
-      </script>  
+    
+    
+      </script>    
       
       
                 <!-- Load jQuery from CloudFlare’s CDN. -->

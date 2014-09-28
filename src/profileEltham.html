@@ -58,7 +58,8 @@
         // this function returns the GET variables passed in via the url
         //
         var $_GET = getQueryParams(document.location.search);
-            
+        
+    
                         
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
@@ -104,7 +105,7 @@
             
             
     		// Define spreadsheet URL.
-			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1rpDJrgFF8pP5VeL46-8aDESiokzSb1wwTanxcA60RaU/pubhtml?gid=1426342879&single=true';
+			var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1rZbOz01UKUET584bytMGjxhJdsfVZsHUUE1XZSZQyRE/pubhtml?gid=795098952&single=true';
 			console.log('loading');
 			// Load an entire sheet.
 			targetElem.sheetrock({
@@ -173,12 +174,12 @@
             
            <div id="searchHeader">
                <div id="searchHeadBar">
-                    <h2>Search</h2>
+                    <h2>Search Eltham Memorial</h2>
                </div>
                
             <form action="" id="search-form">
                 <fieldset>
-                    <input type="text" id="search" name="search" placeholder=""/>
+                    <input type="text" id="s" name="s" placeholder=""/>
                     <!-- <input type="submit" id="search-submit" value="Search" /> -->
                 </fieldset>
             </form>
@@ -327,6 +328,10 @@
          <!-- </div> -->
              
           
+             
+            <img id="siteCredits" src="images/credits.png" alt="Website created by X.C.Smith & James Alexander Doble" /> 
+             
+             
         <p> All content &copy; 2014 Royal Greenwich Heritage Trust </p>
           </div>
           
@@ -358,7 +363,7 @@
          <script type="text/javascript">
       
     var defaultText = "Search by Name, Memorial, Personal info";
-	var searchBox = document.getElementById("search");
+	var searchBox = document.getElementById("s");
  
 	//default text after load
 	searchBox.value = defaultText;

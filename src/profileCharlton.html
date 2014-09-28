@@ -59,20 +59,20 @@
         //
         var $_GET = getQueryParams(document.location.search);
                         
-        //var search;
+        var search;
             
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
             
-            //search = search || $_GET['s'];
+   
             
             var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
             
             // check if id is a proper number (NaN means 'Not a Number')
             var idIsGood = !(id == undefined || isNaN(id)); 
         
-            
+            search = search || $_GET['s'];
             //console.log(id);
             
             // the Handlebars template for HR leaders.
@@ -86,14 +86,14 @@
                     targetElem.css('display','block'); 
             };
             
-        
+            
             if (!idIsGood) 
             {
                 console.log('id was bad');
                 // if no id was given, or it was not a number, return all rows
                 query = "select %id%, %surname%, %forenames%, %regiment% order by %surname% asc";       
                 targetElem = $('#people');
-                //HTemplate = Handlebars.compile($('#people-template').html());  
+                HTemplate = Handlebars.compile($('#people-template').html());  
                 
                 $('#next25').css('display', 'block');
             }
@@ -106,6 +106,7 @@
                 targetElem = $('#person');
                 HTemplate = Handlebars.compile($('#person-template').html()); 
             }
+            
             
             
             
@@ -199,7 +200,7 @@
               <div id="profileInfoBar"> 
                   <h2>More Information</h2>
               </div>
-              
+        <div id="loading"><h5>Loading...</h5></div>      
         <div id="person">
         <!--<h2>Person:</h2>!-->
         <script id="person-template" type="text/x-handlebars-template"> 
@@ -228,6 +229,8 @@
                 </strong> !-->
                 
                 
+            <!--</div>!-->
+            
             
             <div class="info">
                 <ul>
@@ -330,6 +333,8 @@
             <img id="royalGreenwich" src="images/royalGreenwich.png" alt="Royal Borough of Greenwich"/>  
          <!-- </div> -->
              
+             
+            <img id="siteCredits" src="images/credits.png" alt="Website created by X.C.Smith & James Alexander Doble" /> 
           
         <p> All content &copy; 2014 Royal Greenwich Heritage Trust </p>
           </div>
