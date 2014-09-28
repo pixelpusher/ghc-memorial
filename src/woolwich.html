@@ -55,16 +55,23 @@
         // this function returns the GET variables passed in via the url
         //
         var $_GET = getQueryParams(document.location.search);
+                  
+var search;
             
         // this function loads (or re-loads) everything from the database.
         var loadDatabase = function()
     	{
+            
+search = search || $_GET['s'];    
+        
             var id = parseInt($_GET['id'],10); // get the id, make sure it is a number!
             
             // check if id is a proper number (NaN means 'Not a Number')
             var idIsGood = !(id == undefined || isNaN(id)); 
             
             //console.log(id);
+            
+var searchIsGood = !(search == undefined );
             
             // the Handlebars template for HR leaders.
             var HTemplate;
@@ -78,7 +85,7 @@
             };
             
         
-            if (!idIsGood) 
+           /* if (!idIsGood) 
             {
                 console.log('id was bad');
                 // if no id was given, or it was not a number, return all rows
@@ -96,7 +103,33 @@
                 query = "select * where %id%="+id;
                 targetElem = $('#person');  
                 HTemplate = Handlebars.compile($('#person-template').html());  
+            } */
+            
+            
+            
+                        if (!searchIsGood) 
+            {
+                console.log('search was bad');
+                // if no id was given, or it was not a number, return all rows
+                query = "select %id%, %surname%, %forenames%, %regiment% order by %surname% asc";
+                targetElem = $('#people');
+                HTemplate = Handlebars.compile($('#people-template').html());  
+                
+                $('#next25').css('display', 'block');
             }
+            else
+            {
+                console.log('id was good');
+                // if we found the id, do a search
+                //query = "select %id%, %surname%, %forenames%, %cemeterymemorial% where %id%="+id+" order by %surname% asc";
+                query = 'select A,B,C,D,E,F,G,H,I where upper(B) contains upper("'+search+'") or upper(C) contains upper("'+search+'") order by B asc';
+                console.log (query);
+                targetElem = $('#person');
+                HTemplate = Handlebars.compile($('#person-template').html());
+                $('#next15').css('display', 'none');
+            };       
+            
+            
             
             
     		// Define spreadsheet URL.
@@ -202,35 +235,10 @@
               <div id="namesBar"> 
                   <h2>The Names</h2>
               </div>
+
               
-        <div id="person">
-        <!--<h2>Person:</h2>!-->
-        <script id="person-template" type="text/x-handlebars-template">    
-            <div class="name"><strong>
-              {{#if cells.surname}}
-                {{cells.surname}}
-              {{else}}
-                ?
-              {{/if}},
+  		<div id="loading"><h5>Loading...</h5></div>
               
-              {{#if cells.forenames}}
-                {{cells.forenames}}
-              {{else}}
-                ?
-              {{/if}}
-                </strong>
-            </div>
-            <div class="info">
-                <ol>
-                    <li>{{cells.age}}</li>
-                    <li>{{cells.date_of_death}}</li>
-                    <li>{{cells.cemeterymemorial}}</li>
-                    <li>{{cells.regiment}}</li>
-                </ol>
-            </div>
-        </script>
-        </div>
-            
         <div id="people">
         <!--<h2>People</h2>!-->
         <table class="table table-condensed table-striped">
@@ -263,7 +271,43 @@
           </script>
         </tbody>
         </table>
+        </div>             
+              
+              
+        <div id="person">
+        <!--<h2>Person:</h2>!-->
+        <script id="person-template" type="text/x-handlebars-template">    
+            <div class="info"><strong>
+                <ul>
+                    <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
+                    <li><h4>Age:</h4>
+                        {{#if cells.age_at_death }}
+                        {{cells.age_at_death }}
+                        {{else}} ?
+                        {{/if}}
+                        </li> 
+                    <li><h4>Date of Death:</h4>              
+                        {{#if cells.date_died}}
+                        {{formatDate cells.date_died}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                    <li><h4>Regiment:</h4>
+                        {{#if cells.regiment}}
+                        {{cells.regiment}}
+                        {{else}}
+                        ?
+                        {{/if}}
+                    </li>
+                </ul>
+                <br><br>
+                </strong>
+            </div>
+
+        </script>
         </div>
+            
         
         <div id="next15"><a href="javascript:loadDatabase();" id="next15t">next 15</a></div>
           </div> <!--built!-->         
@@ -363,10 +407,11 @@
     <![endif]-->
 
       
-         <script type="text/javascript">
+                 <script type="text/javascript">
       
     var defaultText = "Search by Name, Memorial, Personal info";
 	var searchBox = document.getElementById("s");
+
  
 	//default text after load
 	searchBox.value = defaultText;
@@ -376,15 +421,27 @@
 		if (this.value == defaultText) {//clear text field
 			this.value = '';
 		}
-	}
+	};
  
 	//on blur behaviour
 	searchBox.onblur = function() {
 		if (this.value == "") {//restore default text
 			this.value = defaultText;
 		}
-	}
-          
+	};
+    
+   
+    searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+            console.log ("hitEnter");
+        var newLocation = "Woolwich.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };                
+                     
+                     
+                     
       </script>  
       
       
@@ -397,6 +454,24 @@
 	<!-- sheetrock for google spreadsheets API -->
     <!--<script src="http://chriszarate.github.io/sheetrock/src/jquery.sheetrock.min.js"></script>!-->
 
+      
+      <script>
+    Handlebars.registerHelper("formatDate", function(datetime) {
+        // DEBUG
+        //console.log(datetime);
+        
+        
+        var theDate = new Date(datetime); // new date from string
+
+        return new Handlebars.SafeString(theDate.getDate() + '/' + (theDate.getMonth() + 1) + '/' + theDate.getFullYear());
+            
+
+        
+    });
+      
+    </script>      
+      
+      
         <script src="./js/jquery.sheetrock.min.js"></script> 
       
       

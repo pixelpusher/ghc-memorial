@@ -198,6 +198,55 @@
                   <h2>More Information</h2>
               </div>
               
+        <div id="loading"><h5>Loading...</h5></div>      
+        
+ 
+        
+        
+<div id="people">
+        <!--<h2>People</h2>!-->
+        <table class="table table-condensed table-striped">
+        <thead>
+        <tr>
+            <th id="namesSurfor">Surname, Forename</th>
+            <th id="namesReg">Regiment</th>
+        </tr>
+        </thead>
+        <tbody id="people_table">
+          <script id="people-template" type="text/x-handlebars-template">
+            <tr>
+                <td>
+              <a href="?id={{cells.id}}" id="soldierNames">
+                  <strong>
+                  {{#if cells.surname}}
+                    {{cells.surname}}
+                  {{else}}
+                    ?
+                  {{/if}},
+                  
+                  {{#if cells.forenames}}
+                    {{cells.forenames}}
+                  {{else}}
+                    ?
+                  {{/if}}
+                  </strong></a></td>
+                <td id="regTable">{{cells.regiment}}</td>
+            </tr>
+          </script>
+        </tbody>
+        </table>
+        </div>        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <div id="person">
         <!--<h2>Person:</h2>!-->
         <script id="person-template" type="text/x-handlebars-template"> 
@@ -226,8 +275,10 @@
                 </strong> !-->
                 
                 
-            </div>
-            <div class="info">
+            <!--</div>!-->
+            
+            
+            <div class="info"> <strong>
                 <ul>
                     <li><h4>Name:</h4>{{cells.surname}}, {{cells.forenames}}</li>
                     <li><h4>Age:</h4>
@@ -258,11 +309,12 @@
                         {{/if}}
                     </li>
                 </ul>
-            </div>
+                <br><br>
+                </strong>
+            </div> <!--info!--> 
         </script>
-        </div>
-          </div> <!--profileInfo!--> 
-
+        </div> <!--person!--> 
+          </div> <!--profileInfo!-->
         
                    
            
@@ -373,16 +425,25 @@
 		if (this.value == defaultText) {//clear text field
 			this.value = '';
 		}
-	}
+	};
  
 	//on blur behaviour
 	searchBox.onblur = function() {
 		if (this.value == "") {//restore default text
 			this.value = defaultText;
 		}
-	}
+	};
           
-      </script>  
+             
+    searchBox.onkeydown = function(e) {
+        if(e.which == 13) {
+        e.preventDefault();
+        console.log ("hitEnter");
+        var newLocation = "Eltham.html?s=" +searchBox.value;
+        window.location.assign(newLocation);
+        }
+    };         
+      </script> 
       
       
                       <!-- Load jQuery from CloudFlare’s CDN. -->
